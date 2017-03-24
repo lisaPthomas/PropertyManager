@@ -1,0 +1,86 @@
+<!--Main Search Page -->
+
+<body>
+    <div ui-view></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="search">Home</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a ui-sref="signIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1 id="title">Property Manager</h1>
+    <div class="search-background">
+        <img src="./app/styles/condominium-690086_1920.jpg">
+    </div>
+    <div class="well-searchbox">
+        <form class="form-horizontal" role="form">
+            <div class="form-group" id="SearchPropertiesPanelHeading">
+                <div class="panel-heading">Search Properties</div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">City</label>
+                <div class="col-md-8">
+                    <input ng-model="vm.City" type="text" class="form-control" placeholder="San Diego">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Zip</label>
+                <div class="col-md-8">
+                    <input ng-model="vm.Zip" type="number" class="form-control" placeholder="Zip">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Min Rent</label>
+                <div class="col-md-8">
+                    <input ng-model="vm.minRent" type="number" class="form-control" placeholder="$">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Max Rent</label>
+                <div class="col-md-8">
+                    <input ng-model="vm.maxRent" type="number" class="form-control" placeholder="$">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Bedrooms</label>
+                <div class="col-md-8">
+                    <input ng-model="vm.Bedroom" type="number" class="form-control" placeholder="#Rooms">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Bathrooms</label>
+                <div class="col-md-8">
+                    <input ng-model="vm.Bathroom" type="number" class="form-control" placeholder="#Bathrooms">
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-5">
+                <button type="submit" class="btn btn-success" ng-click="vm.getSearch(vm.City, vm.Zip, vm.minRent, vm.maxRent, vm.Bedroom, vm.Bathroom)">Search</button>
+            </div>
+        </form>
+    </div>
+    <h3> Search Results </h3>
+    <div id="searchPanels" class="row form-group">
+        <div class="col-xs-10 col-sm-4 col-md-3" id="divContainer" ng-repeat="properties in vm.getProperties">
+            <div id="panel-repeat" class="panel panel-default">
+                <div class="panel-body">
+                    <p>Address: {{properties.address1}}</p>
+                    <p>Address Line 2:{{properties.address2}}</p>
+                    <p>
+                        City: {{properties.city}}{{" "}} State: {{properties.state}}{{" "}} Zip: {{properties.zip}}</p>
+                    <p>Contact Phone: {{properties.contactPhone}}</p>
+                    <p>Rent: {{properties.rent}}</p>
+                    <p>SqFt: {{properties.sqFootage}}</p>
+                    <p>Bedrooms: {{properties.bedroom}}</p>
+                    <p>Bathrooms: {{properties.bathroom}}</p>
+                    <p>PetFriendly: {{properties.petFriendly}}</p>
+                    <p>Lease Term(Months): {{properties.leaseTerm}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
